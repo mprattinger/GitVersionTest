@@ -33,13 +33,13 @@ jobs:
           echo ${{ env.semVer }}
 
       - name: Restore
-        run: dotnet restore -r linux-x64
+        run: dotnet restore
       
       - name: Build
-        run: dotnet build -r linux-x64 --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore
       
       - name: Publish
-        run: dotnet publish -r linux-x64 --configuration Release --no-build -p:Version=${{ env.semVer }} /p:SelfContained=true /p:PublishSingleFile=true /p:PublishReadyToRun=true
+        run: dotnet publish -r linux-x64 --configuration Release -p:Version=${{ env.semVer }} --self-contained /p:PublishSingleFile=true /p:PublishReadyToRun=true
 
       - name: Run
         run: ls ${{ github.workspace }}/bin/Release/net8.0/publish
