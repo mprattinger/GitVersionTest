@@ -33,10 +33,10 @@ jobs:
           echo ${{ env.semVer }}
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore -r win-x64
       
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build -r win-x64 --configuration Release --no-restore
       
       - name: Publish
         run: dotnet publish -r win-x64 --configuration Release --no-build -p:Version=${{ env.semVer }} /p:SelfContained=true /p:PublishSingleFile=true /p:PublishReadyToRun=true
