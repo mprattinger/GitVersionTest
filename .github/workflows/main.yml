@@ -46,3 +46,6 @@ jobs:
 
       - name: list dir
         run: ls ${{ github.workspace }}/artifacts-win
+
+      - name: list dir
+        run: . ${{ github.workspace }}/artifacts-lnx/GitVersionTest
