@@ -38,8 +38,11 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
       
-      - name: Publish
-        run: dotnet publish -r linux-x64 --configuration Release -p:Version=${{ env.semVer }} --self-contained /p:PublishSingleFile=true /p:PublishReadyToRun=true -o ${{ github.workspace }}/artifacts
+      - name: Publish Linux
+        run: dotnet publish -r linux-x64 --configuration Release -p:Version=${{ env.semVer }} --self-contained /p:PublishSingleFile=true /p:PublishReadyToRun=true -o ${{ github.workspace }}/artifacts-lnx
 
-      - name: Run
-        run: ls ${{ github.workspace }}/artifacts
+      - name: Publish Win
+        run: dotnet publish -r win-x64 --configuration Release -p:Version=${{ env.semVer }} --self-contained /p:PublishSingleFile=true /p:PublishReadyToRun=true -o ${{ github.workspace }}/artifacts-win
+
+      - name: list dir
+        run: ls ${{ github.workspace }}/artifacts-win
