@@ -31,3 +31,12 @@ jobs:
       - name: Use the version
         run: |
           echo ${{ env.semVer }}
+
+      - name: Restore
+        run: dotnet restore
+      
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      
+      - name: Publish
+        run: dotnet publish --configuration Release --no-build -p:Version=${{ env.semVer }}
